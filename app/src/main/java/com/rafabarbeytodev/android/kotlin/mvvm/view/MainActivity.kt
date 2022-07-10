@@ -1,15 +1,14 @@
 package com.rafabarbeytodev.android.kotlin.mvvm.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import com.rafabarbeytodev.android.kotlin.mvvm.databinding.ActivityMainBinding
 import com.rafabarbeytodev.android.kotlin.mvvm.viewmodel.QuoteViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var  mBinding: ActivityMainBinding
+    private lateinit var mBinding: ActivityMainBinding
 
     /**La idea es unir la actividad a nuestro ViewModel para poder estar suscrito a
      * los cambios y modificar la UI cuando sea necesario.
@@ -28,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         /** Nos queda suscribirnos a los cambios.
          *live data es básicamente el patrón observe por lo que definirlo es muy sencillo.*/
 
-        quoteViewModel.quoteModel.observe(this, { currentQuote ->
+        quoteViewModel.quoteModel.observe(this) { currentQuote ->
             mBinding.tvQuote.text = currentQuote.quote
             mBinding.tvAuthor.text = currentQuote.author
-        })
+        }
 
         /** Vamos a terminar añadiendo un setOnClickListener al constraintLayout principal.*/
         mBinding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
