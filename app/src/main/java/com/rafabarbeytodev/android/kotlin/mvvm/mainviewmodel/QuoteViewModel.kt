@@ -1,4 +1,4 @@
-package com.rafabarbeytodev.android.kotlin.mvvm.viewmodel
+package com.rafabarbeytodev.android.kotlin.mvvm.mainviewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

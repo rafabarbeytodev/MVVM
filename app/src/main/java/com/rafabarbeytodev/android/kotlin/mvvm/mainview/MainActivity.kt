@@ -1,10 +1,10 @@
-package com.rafabarbeytodev.android.kotlin.mvvm.view
+package com.rafabarbeytodev.android.kotlin.mvvm.mainview
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.rafabarbeytodev.android.kotlin.mvvm.databinding.ActivityMainBinding
-import com.rafabarbeytodev.android.kotlin.mvvm.viewmodel.QuoteViewModel
+import com.rafabarbeytodev.android.kotlin.mvvm.mainviewmodel.QuoteViewModel
 
 class MainActivity : AppCompatActivity() {
 
