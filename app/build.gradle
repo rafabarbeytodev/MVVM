@@ -40,6 +40,9 @@ def fragment_version = "1.5.0"
 def activity_version = "1.5.0"
 def viewmodel_version = "2.5.0"
 def livedata_version = "2.5.0"
+def retrofit_version = "2.9.0"
+def gson_version = "2.9.0"
+def coroutines_version = "1.6.1"
 
 
 dependencies {
@@ -61,4 +64,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_version"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
+
+    //Retrofit 2: Librería encargada del consumo de las API.
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    //Retrofit 2 Converter Gson: Esta herramienta será un complemento a la anterior
+    // y nos simplificará el proceso de pasar un JSON a una Data Class que es
+    // con lo que trabajaremos en nuestro proyecto.
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    //Corrutinas: Entre otras muchas cosas nos permitirá hacer las peticiones de Retrofit
+    // en segundo plano para no bloquear la interfaz del usuario
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 }
