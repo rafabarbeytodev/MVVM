@@ -3,7 +3,7 @@ package com.rafabarbeytodev.android.kotlin.mvvm.domain
 import com.rafabarbeytodev.android.kotlin.mvvm.data.model.QuoteModel
 import com.rafabarbeytodev.android.kotlin.mvvm.data.QuoteRepository
 
-/** Caso de uso para cargar todas las citas */
+/** Caso de uso para cargar todas las citas **/
 class GetQuotesUseCase {
 
     private val repository = QuoteRepository()

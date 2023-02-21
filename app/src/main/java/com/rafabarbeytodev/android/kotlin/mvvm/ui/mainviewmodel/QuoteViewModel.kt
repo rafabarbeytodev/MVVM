@@ -18,10 +18,11 @@ class QuoteViewModel : ViewModel() { //La clase extiende de ViewModel
     se pueda conectar, pero como el valor va a ser modificado es mutable y ese modelo de datos
     encapsula el objeto que queremos acceder, en este caso será un QuoteModel porque iremos
     cambiando la cita cada vez que el usuario toque la pantalla.*/
-    val quoteModel = MutableLiveData<QuoteModel>()
+
+    private val quoteModel = MutableLiveData<QuoteModel?>()
 
     /**Progressbar*/
-    val isLoading = MutableLiveData<Boolean>()
+    private val isLoading = MutableLiveData<Boolean>()
 
     /** Gestion de errores*/
     private val typeError: MutableLiveData<TypeError> = MutableLiveData()
@@ -32,14 +33,13 @@ class QuoteViewModel : ViewModel() { //La clase extiende de ViewModel
     (llamaremos a este método cada vez que se pulse la pantalla) y luego se lo
     añadiremos a nuestro live data con postValue().
     Y como nuestro objeto ha sido modificado la actividad lo sabrá al momento y
-    pintará los cambios.*/
+    pintará los cambios.**/
 
-    var getQuotesUseCase = GetQuotesUseCase()
+    private var getQuotesUseCase = GetQuotesUseCase()
     fun onCreate() {
         viewModelScope.launch {
             /**mostramos el progressbar*/
             isLoading.postValue(true)
-
             val result = getQuotesUseCase()
             /**Obtenemos el listado de citas llamando a ese caso de uso*/
             if (result.isNotEmpty()) {
@@ -48,14 +48,12 @@ class QuoteViewModel : ViewModel() { //La clase extiende de ViewModel
             } else {
                 setTypeError(TypeError.GET)
             }
-
             /**ocultamos el progressbar*/
             isLoading.postValue(false)
-
         }
     }
 
-    var getRandomQuoteUseCase = GetRandomQuoteUseCase()
+    private var getRandomQuoteUseCase = GetRandomQuoteUseCase()
     fun randomQuote() {
         /**mostramos el progressbar*/
         isLoading.postValue(true)
@@ -68,6 +66,8 @@ class QuoteViewModel : ViewModel() { //La clase extiende de ViewModel
     }
 
     fun getTypeError(): MutableLiveData<TypeError> = typeError
+    fun getIsLoading(): MutableLiveData<Boolean> = isLoading
+    fun getQuoteModel(): MutableLiveData<QuoteModel?> = quoteModel
 
     private fun setTypeError(typeError: TypeError) {
         this.typeError.value = typeError

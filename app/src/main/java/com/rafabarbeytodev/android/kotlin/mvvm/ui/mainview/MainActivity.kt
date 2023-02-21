@@ -40,14 +40,14 @@ class MainActivity : AppCompatActivity() {
          *live data es básicamente el patrón observe por lo que definirlo es muy sencillo.*/
 
         /**Cambios en las citas */
-        quoteViewModel.quoteModel.observe(this) { currentQuote ->
-            if (currentQuote.quote.isNotEmpty()) {
+        quoteViewModel.getQuoteModel().observe(this) { currentQuote ->
+            if (currentQuote?.quote?.isNotEmpty() == true) {
                 mBinding.tvQuote.text = currentQuote.quote
                 mBinding.tvAuthor.text = currentQuote.author
             }
         }
         /**Cambios en el ProgressBar*/
-        quoteViewModel.isLoading.observe(this) { visibility ->
+        quoteViewModel.getIsLoading().observe(this) { visibility ->
             mBinding.loading.isVisible = visibility
         }
 
