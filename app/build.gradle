@@ -1,15 +1,21 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.rafabarbeytodev.android.kotlin.mvvm"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -33,28 +39,31 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.rafabarbeytodev.android.kotlin.mvvm'
 
 }
 
-def fragment_version = "1.5.0"
-def activity_version = "1.5.0"
-def viewmodel_version = "2.5.0"
-def livedata_version = "2.5.0"
+def fragment_version = "1.5.5"
+def activity_version = "1.6.1"
+def viewmodel_version = "2.5.1"
+def livedata_version = "2.5.1"
 def retrofit_version = "2.9.0"
 def gson_version = "2.9.0"
-def coroutines_version = "1.6.1"
+def coroutines_version = "1.6.4"
+def hilt_version = "2.42"
+
 
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Fragment
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
@@ -75,6 +84,19 @@ dependencies {
     // en segundo plano para no bloquear la interfaz del usuario
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    //Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
+
 }

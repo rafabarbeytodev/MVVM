@@ -8,7 +8,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.rafabarbeytodev.android.kotlin.mvvm.common.TypeError
 import com.rafabarbeytodev.android.kotlin.mvvm.databinding.ActivityMainBinding
 import com.rafabarbeytodev.android.kotlin.mvvm.ui.mainviewmodel.QuoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+/**
+Con la etiqueta @AndroidEntryPoint ya estaría configurada la ativity
+
+**/
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding

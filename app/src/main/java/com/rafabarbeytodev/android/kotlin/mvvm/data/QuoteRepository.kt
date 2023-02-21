@@ -3,14 +3,19 @@ package com.rafabarbeytodev.android.kotlin.mvvm.data
 import com.rafabarbeytodev.android.kotlin.mvvm.data.network.QuoteService
 import com.rafabarbeytodev.android.kotlin.mvvm.data.model.QuoteModel
 import com.rafabarbeytodev.android.kotlin.mvvm.data.model.QuoteProvider
+import javax.inject.Inject
 
-class QuoteRepository {
+class QuoteRepository @Inject constructor(
+    private val api: QuoteService,
+    private val quoteProvider: QuoteProvider
+) {
 
-    private val api = QuoteService()
+    // Lo eliminamos al inyectarlo
+    //private val api = QuoteService()
 
     suspend fun getAllQuotes():List<QuoteModel>{
         val response = api.getQuotes()
-        QuoteProvider.quotes = response
+        quoteProvider.quotes = response
         return response
     }
 }
